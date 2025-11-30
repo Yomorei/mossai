@@ -45,11 +45,11 @@ func SetupSQL() {
 
 	if _, err := Database.Exec(`
 	CREATE TABLE IF NOT EXISTS "users" (
-		"id"		INTEGER NOT NULL,
-		"username"	TEXT NOT NULL,
-		"discordid"	TEXT NOT NULL,
-		"server"	DATETIME,
-		PRIMARY KEY("id" AUTOINCREMENT)
+		"id"        INTEGER NOT NULL,
+		"username"  TEXT NOT NULL,
+		"discordid" TEXT NOT NULL,
+		"server"    INTEGER,
+		PRIMARY KEY("id" AUTOINCREMENT),
 		FOREIGN KEY("server") REFERENCES "servers"("id")
 	);
 	`); err != nil {

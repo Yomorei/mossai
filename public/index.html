@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>mossai - osu! server list</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/static/styles.css" />
+    <link rel="icon" href="/static/logo.png" />
+  </head>
+  <body>
+    <div class="layout">
+      <header class="topbar">
+        <div class="topbar-left">
+          <img
+            src="/static/logo.png"
+            alt="mossai"
+            class="topbar-logo"
+          />
+          <div class="topbar-brand">
+            <span class="brand-name">mossai</span>
+            <span class="brand-subtitle">osu! server list [prototype]</span>
+          </div>
+        </div>
+
+        <nav class="topbar-nav">
+          <a href="#" class="nav-link nav-link-active">Servers</a>
+          <button class="nav-action" type="button" disabled>
+            Discord Soon Prob
+          </button>
+        </nav>
+      </header>
+
+      <main class="content">
+        <div class="env-banner">
+          <span class="env-dot"></span>
+          <span class="env-label">Prototype</span>
+          <span class="env-text">
+            This version of mossai is for testing and brainstorming only.
+          </span>
+        </div>
+
+        <section class="hero">
+          <p class="hero-kicker">osu! private servers</p>
+          <h1 class="hero-title">Find a server to play on.</h1>
+          <p class="hero-subtitle">
+            Browse community osu! servers, compare them by votes, and decide
+            where to send your next play. Later, you’ll be able to link your own
+            server and log in with Discord.
+          </p>
+        </section>
+
+        <section class="panel">
+          <header class="panel-header">
+            <div>
+              <h2 class="panel-title">Top servers</h2>
+              <p class="panel-subtitle">Ranked by total votes.</p>
+            </div>
+          </header>
+
+          <div id="leaderboard-loading" class="notice">
+            Loading leaderboard...
+          </div>
+
+          <div id="leaderboard-error" class="notice notice-error hidden">
+            Couldn’t load servers. Please try again in a moment.
+          </div>
+
+          <div id="leaderboard-wrapper" class="cards-shell hidden">
+            <div id="server-grid" class="server-grid">
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <div class="footer-left">
+          <span>mossai [prototype]</span>
+        </div>
+        <div class="footer-right">
+          <span>this is pretty shit.</span>
+        </div>
+      </footer>
+    </div>
+
+    <script src="/static/main.js" defer></script>
+  </body>
+</html>
