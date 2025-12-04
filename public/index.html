@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>mossai - osu! server list</title>
+    <title>mossai [osu! private servers]</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="/static/styles.css" />
     <link rel="icon" href="/static/logo.png" />
@@ -10,32 +10,216 @@
   <body>
     <div class="layout">
       <header class="topbar">
-        <div class="topbar-left">
-          <img
-            src="/static/logo.png"
-            alt="mossai"
-            class="topbar-logo"
-          />
-          <div class="topbar-brand">
-            <span class="brand-name">mossai</span>
-            <span class="brand-subtitle">osu! server list [prototype]</span>
-          </div>
-        </div>
+  <div class="topbar-left">
+    <img
+      src="/static/logo.png"
+      alt="mossai"
+      class="topbar-logo"
+    />
+    <div class="topbar-brand">
+      <span class="brand-name">mossai</span>
+      <span class="brand-subtitle">osu! server list [prototype]</span>
+    </div>
+  </div>
 
-        <nav class="topbar-nav">
-          <a href="#" class="nav-link nav-link-active">Servers</a>
-          <button class="nav-action" type="button" disabled>
-            Discord Soon Prob
+  <nav class="topbar-nav">
+    <a href="/" class="nav-link nav-link-active">Servers</a>
+    <a href="/list" class="nav-link">List a server</a>
+
+    <button
+      id="theme-toggle"
+      class="theme-toggle"
+      type="button"
+      aria-label="Toggle color theme"
+    >
+      <svg
+        class="theme-icon theme-icon-sun"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+      >
+        <circle cx="12" cy="12" r="4.5" fill="currentColor" />
+        <circle
+          cx="12"
+          cy="12"
+          r="7"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+        />
+        <line
+          x1="12"
+          y1="2"
+          x2="12"
+          y2="5"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+        />
+        <line
+          x1="12"
+          y1="19"
+          x2="12"
+          y2="22"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+        />
+        <line
+          x1="4.2"
+          y1="4.2"
+          x2="6.3"
+          y2="6.3"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+        />
+        <line
+          x1="17.7"
+          y1="17.7"
+          x2="19.8"
+          y2="19.8"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+        />
+        <line
+          x1="2"
+          y1="12"
+          x2="5"
+          y2="12"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+        />
+        <line
+          x1="19"
+          y1="12"
+          x2="22"
+          y2="12"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+        />
+        <line
+          x1="4.2"
+          y1="19.8"
+          x2="6.3"
+          y2="17.7"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+        />
+        <line
+          x1="17.7"
+          y1="6.3"
+          x2="19.8"
+          y2="4.2"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+        />
+      </svg>
+
+      <!-- moon icon (this is currently broken visually wise.) -->
+      <svg
+        class="theme-icon theme-icon-moon"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+      >
+        <path
+          d="M21 13.5A8.25 8.25 0 0 1 10.5 3a6.75 6.75 0 1 0 10.5 10.5z"
+          fill="currentColor"
+        />
+        <path
+          d="M21 13.5A8.25 8.25 0 0 1 10.5 3"
+          fill="none"
+          stroke="#020617"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </button>
+
+    <!-- auth -->
+    <div class="nav-auth">
+      <button
+        id="discord-login"
+        class="nav-link nav-auth-login"
+        type="button"
+      >
+        Sign in with Discord
+      </button>
+
+      <div id="nav-user" class="nav-user hidden">
+        <button
+          id="nav-user-trigger"
+          class="nav-user-trigger"
+          type="button"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          <img
+            id="nav-user-avatar"
+            class="nav-user-avatar"
+            alt="Discord avatar"
+          />
+        </button>
+
+        <div
+          id="nav-user-menu"
+          class="nav-user-menu"
+          role="menu"
+        >
+          <button
+            id="nav-logout"
+            class="nav-user-menu-item"
+            type="button"
+            role="menuitem"
+          >
+            <span class="nav-user-menu-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M9 5h-2a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h2"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M13 16l4-4-4-4"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M17 12H9"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </span>
+            <span class="nav-user-menu-label">Logout</span>
           </button>
-        </nav>
-      </header>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
 
       <main class="content">
         <div class="env-banner">
           <span class="env-dot"></span>
           <span class="env-label">Prototype</span>
           <span class="env-text">
-            This version of mossai is for testing and brainstorming only.
+            This version of mossai is for testing only. Data, design, and
+            features will change.
           </span>
         </div>
 
@@ -43,9 +227,7 @@
           <p class="hero-kicker">osu! private servers</p>
           <h1 class="hero-title">Find a server to play on.</h1>
           <p class="hero-subtitle">
-            Browse community osu! servers, compare them by votes, and decide
-            where to send your next play. Later, you’ll be able to link your own
-            server and log in with Discord.
+            Browse community osu! servers and compare them by votes.
           </p>
         </section>
 
@@ -62,12 +244,11 @@
           </div>
 
           <div id="leaderboard-error" class="notice notice-error hidden">
-            Couldn’t load servers. Please try again in a moment.
+            Couldn't load servers. Please try again in a moment.
           </div>
 
           <div id="leaderboard-wrapper" class="cards-shell hidden">
-            <div id="server-grid" class="server-grid">
-            </div>
+            <div id="server-grid" class="server-grid"></div>
           </div>
         </section>
       </main>
@@ -77,7 +258,7 @@
           <span>mossai [prototype]</span>
         </div>
         <div class="footer-right">
-          <span>this is pretty shit.</span>
+          <span>early alpha - expect many changes.</span>
         </div>
       </footer>
     </div>

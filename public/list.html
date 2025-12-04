@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>mossai - list your server</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/static/styles.css" />
+    <link rel="icon" href="/static/logo.png" />
+    <script
+      src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+      async
+      defer
+    ></script>
+  </head>
+  <body>
+    <div class="layout">
+      <header class="topbar">
+        <div class="topbar-left">
+          <img
+            src="/static/logo.png"
+            alt="mossai"
+            class="topbar-logo"
+          />
+          <div class="topbar-brand">
+            <span class="brand-name">mossai</span>
+            <span class="brand-subtitle">osu! server list [prototype]</span>
+          </div>
+        </div>
+
+        <nav class="topbar-nav">
+          <a href="/" class="nav-link">Servers</a>
+          <a href="/list" class="nav-link nav-link-active">List a server</a>
+
+          <button
+            id="theme-toggle"
+            class="theme-toggle"
+            type="button"
+            aria-label="Toggle color theme"
+          >
+            <svg
+              class="theme-icon theme-icon-sun"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <circle cx="12" cy="12" r="4.5" fill="currentColor" />
+              <circle
+                cx="12"
+                cy="12"
+                r="7"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+              />
+              <line
+                x1="12"
+                y1="2"
+                x2="12"
+                y2="5"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+              />
+              <line
+                x1="12"
+                y1="19"
+                x2="12"
+                y2="22"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+              />
+              <line
+                x1="4.2"
+                y1="4.2"
+                x2="6.3"
+                y2="6.3"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+              />
+              <line
+                x1="17.7"
+                y1="17.7"
+                x2="19.8"
+                y2="19.8"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+              />
+              <line
+                x1="2"
+                y1="12"
+                x2="5"
+                y2="12"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+              />
+              <line
+                x1="19"
+                y1="12"
+                x2="22"
+                y2="12"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+              />
+              <line
+                x1="4.2"
+                y1="19.8"
+                x2="6.3"
+                y2="17.7"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+              />
+              <line
+                x1="17.7"
+                y1="6.3"
+                x2="19.8"
+                y2="4.2"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+              />
+            </svg>
+
+              <!-- moon icon (broken) -->
+             <svg
+                class="theme-icon theme-icon-moon"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+               <path
+                 d="M21 13.5A8.25 8.25 0 0 1 10.5 3 6.75 6.75 0 1 0 21 13.5z"
+                 fill="currentColor"
+                />
+             </svg>
+          </button>
+
+          <!-- auth -->
+          <div class="nav-auth">
+            <button
+              id="discord-login"
+              class="nav-link nav-auth-login"
+              type="button"
+            >
+              Sign in with Discord
+            </button>
+
+            <div id="nav-user" class="nav-user hidden">
+              <button
+                id="nav-user-trigger"
+                class="nav-user-trigger"
+                type="button"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <img
+                  id="nav-user-avatar"
+                  class="nav-user-avatar"
+                  alt="Discord avatar"
+                />
+              </button>
+
+              <div
+                id="nav-user-menu"
+                class="nav-user-menu"
+                role="menu"
+              >
+                <button
+                  id="nav-logout"
+                  class="nav-user-menu-item"
+                  type="button"
+                  role="menuitem"
+                >
+                  <span class="nav-user-menu-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                      <path
+                        d="M9 5h-2a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h2"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.6"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M13 16l4-4-4-4"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.6"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M17 12H9"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.6"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </span>
+                  <span class="nav-user-menu-label">Logout</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </header>
+
+      <main class="content">
+        <div class="env-banner">
+          <span class="env-dot"></span>
+          <span class="env-label">Prototype</span>
+          <span class="env-text">
+            Requests go into a review queue. Approved servers will show up on
+            the public list.
+          </span>
+        </div>
+
+        <section class="panel">
+          <header class="panel-header">
+            <div>
+              <h1 class="panel-title">List your osu! private server</h1>
+              <p class="panel-subtitle">
+                Fill this out to request a spot on mossai. An admin will review
+                your server before it appears on the list.
+              </p>
+            </div>
+          </header>
+
+          <div id="list-success" class="notice notice-success hidden">
+            Your server request has been submitted and is pending review.
+          </div>
+
+          <form
+            id="server-request-form"
+            class="server-form"
+            method="post"
+            action="/list"
+          >
+            <div class="server-form-row">
+              <label class="server-form-label" for="server_name">
+                Server name <span>*</span>
+              </label>
+              <input
+                class="server-form-input"
+                type="text"
+                id="server_name"
+                name="server_name"
+                required
+                maxlength="80"
+              />
+            </div>
+
+            <div class="server-form-row">
+              <label class="server-form-label" for="url">
+                Website URL
+              </label>
+              <input
+                class="server-form-input"
+                type="url"
+                id="url"
+                name="url"
+                placeholder="https://example.com"
+                maxlength="200"
+              />
+              <div class="server-form-helper">
+                This is what players will see as the main link for your server.
+              </div>
+            </div>
+            <div class="server-form-row">
+              <label class="server-form-label" for="description">
+                Short description
+              </label>
+              <textarea
+                class="server-form-textarea"
+                id="description"
+                name="description"
+                maxlength="500"
+              ></textarea>
+              <div class="server-form-helper">
+                One or two sentences about what makes your server different.
+              </div>
+            </div>
+
+            <div class="server-form-row">
+              <label class="server-form-label" for="tags-input">
+                Tags
+              </label>
+              <div class="tag-input-shell" id="tags-input-shell">
+                <div class="tag-chips" id="tag-chips"></div>
+                <input
+                  class="tag-input"
+                  type="text"
+                  id="tags-input"
+                  placeholder="relax, autopilot, packs"
+                  autocomplete="off"
+                />
+              </div>
+              <input type="hidden" id="tags" name="tags" />
+              <div class="server-form-helper">
+                Press Enter to add tags. For example: relax, autopilot, cheating.
+              </div>
+            </div>
+
+            <div class="server-form-row">
+              <label class="server-form-label" for="owner_name">
+                Your name <span>*</span>
+              </label>
+              <input
+                class="server-form-input"
+                type="text"
+                id="owner_name"
+                name="owner_name"
+                required
+                maxlength="80"
+              />
+            </div>
+
+            <div class="server-form-row">
+              <label class="server-form-label" for="owner_discord">
+                Your Discord <span>*</span>
+              </label>
+              <input
+                class="server-form-input"
+                type="text"
+                id="owner_discord"
+                name="owner_discord"
+                required
+                maxlength="80"
+                placeholder="Discord username"
+              />
+              <div class="server-form-helper">
+                Used only so an admin can contact you about your request.
+              </div>
+            </div>
+
+            <div class="server-form-row">
+              <label class="server-form-label">Terms of Service</label>
+              <div class="tos-box" id="tos-box">
+                <div class="tos-content" id="tos-content">
+                  <p>
+                    By submitting this form you confirm that you are authorized
+                    to represent this server and that the information you
+                    provide is accurate.
+                  </p>
+                  <p>
+                    You agree that mossai may remove your server listing at any
+                    time if it is abusive, illegal, or clearly misleading, or if
+                    it violates the rules of the upstream osu! project.
+                  </p>
+                  <p>
+                    You are solely responsible for how your server handles user
+                    data, accounts, and gameplay. mossai is a directory only and
+                    does not operate any listed servers.
+                  </p>
+                  <p>
+                    You agree not to submit servers that contain malware,
+                    phishing links, or other harmful content.
+                  </p>
+                  <p>
+                    This prototype is subject to change. The terms may be
+                    updated and you may be asked to re-accept them in the
+                    future.
+                  </p>
+                </div>
+              </div>
+              <div class="tos-ack-row">
+                <input
+                  type="checkbox"
+                  id="tos_accept"
+                  name="tos_accept"
+                  value="1"
+                  disabled
+                  required
+                />
+                <label for="tos_accept" id="tos_accept_label">
+                  I have read and agree to the mossai Terms of Service.
+                </label>
+              </div>
+              <input type="hidden" name="tos_version" value="1" />
+            </div>
+
+            <div class="server-form-row">
+              <label class="server-form-label">
+                Verification <span>*</span>
+              </label>
+              <div class="captcha-shell">
+                <div
+                  class="cf-turnstile"
+                  data-sitekey="YOUR_TURNSTILE_SITE_KEY"
+                  data-theme="auto"
+                ></div>
+              </div>
+              <div class="server-form-helper">
+                Protected by Cloudflare Turnstile.
+              </div>
+            </div>
+
+            <div class="server-form-actions">
+              <button class="server-form-submit" type="submit">
+                Submit request
+              </button>
+            </div>
+          </form>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <div class="footer-left">
+          <span>mossai [prototype]</span>
+        </div>
+        <div class="footer-right">
+          <span>This is a low-effort example of what list server could look like.</span>
+        </div>
+      </footer>
+    </div>
+
+    <script src="/static/main.js" defer></script>
+  </body>
+</html>
