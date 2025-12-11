@@ -4,214 +4,175 @@
     <meta charset="UTF-8" />
     <title>mossai [osu! private servers]</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="/static/styles.css" />
+    <link rel="stylesheet" href="/static/styles.css">
     <link rel="icon" href="/static/logo.png" />
   </head>
   <body>
     <div class="layout">
       <header class="topbar">
-  <div class="topbar-left">
-    <img
-      src="/static/logo.png"
-      alt="mossai"
-      class="topbar-logo"
-    />
-    <div class="topbar-brand">
-      <span class="brand-name">mossai</span>
-      <span class="brand-subtitle">osu! server list [prototype]</span>
-    </div>
-  </div>
-
-  <nav class="topbar-nav">
-    <a href="/" class="nav-link nav-link-active">Servers</a>
-    <a href="/list" class="nav-link">List a server</a>
-
-    <button
-      id="theme-toggle"
-      class="theme-toggle"
-      type="button"
-      aria-label="Toggle color theme"
-    >
-      <svg
-        class="theme-icon theme-icon-sun"
-        viewBox="0 0 24 24"
-        aria-hidden="true"
-      >
-        <circle cx="12" cy="12" r="4.5" fill="currentColor" />
-        <circle
-          cx="12"
-          cy="12"
-          r="7"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="1.6"
-        />
-        <line
-          x1="12"
-          y1="2"
-          x2="12"
-          y2="5"
-          stroke="currentColor"
-          stroke-width="1.6"
-          stroke-linecap="round"
-        />
-        <line
-          x1="12"
-          y1="19"
-          x2="12"
-          y2="22"
-          stroke="currentColor"
-          stroke-width="1.6"
-          stroke-linecap="round"
-        />
-        <line
-          x1="4.2"
-          y1="4.2"
-          x2="6.3"
-          y2="6.3"
-          stroke="currentColor"
-          stroke-width="1.6"
-          stroke-linecap="round"
-        />
-        <line
-          x1="17.7"
-          y1="17.7"
-          x2="19.8"
-          y2="19.8"
-          stroke="currentColor"
-          stroke-width="1.6"
-          stroke-linecap="round"
-        />
-        <line
-          x1="2"
-          y1="12"
-          x2="5"
-          y2="12"
-          stroke="currentColor"
-          stroke-width="1.6"
-          stroke-linecap="round"
-        />
-        <line
-          x1="19"
-          y1="12"
-          x2="22"
-          y2="12"
-          stroke="currentColor"
-          stroke-width="1.6"
-          stroke-linecap="round"
-        />
-        <line
-          x1="4.2"
-          y1="19.8"
-          x2="6.3"
-          y2="17.7"
-          stroke="currentColor"
-          stroke-width="1.6"
-          stroke-linecap="round"
-        />
-        <line
-          x1="17.7"
-          y1="6.3"
-          x2="19.8"
-          y2="4.2"
-          stroke="currentColor"
-          stroke-width="1.6"
-          stroke-linecap="round"
-        />
-      </svg>
-
-      <!-- moon icon (this is currently broken visually wise.) -->
-      <svg
-        class="theme-icon theme-icon-moon"
-        viewBox="0 0 24 24"
-        aria-hidden="true"
-      >
-        <path
-          d="M21 13.5A8.25 8.25 0 0 1 10.5 3a6.75 6.75 0 1 0 10.5 10.5z"
-          fill="currentColor"
-        />
-        <path
-          d="M21 13.5A8.25 8.25 0 0 1 10.5 3"
-          fill="none"
-          stroke="#020617"
-          stroke-width="1.5"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        />
-      </svg>
-    </button>
-
-    <!-- auth -->
-    <div class="nav-auth">
-      <button
-        id="discord-login"
-        class="nav-link nav-auth-login"
-        type="button"
-      >
-        Sign in with Discord
-      </button>
-
-      <div id="nav-user" class="nav-user hidden">
-        <button
-          id="nav-user-trigger"
-          class="nav-user-trigger"
-          type="button"
-          aria-haspopup="true"
-          aria-expanded="false"
-        >
+        <div class="topbar-left">
           <img
-            id="nav-user-avatar"
-            class="nav-user-avatar"
-            alt="Discord avatar"
+            src="/static/logo.png"
+            alt="mossai"
+            class="topbar-logo"
           />
-        </button>
-
-        <div
-          id="nav-user-menu"
-          class="nav-user-menu"
-          role="menu"
-        >
-          <button
-            id="nav-logout"
-            class="nav-user-menu-item"
-            type="button"
-            role="menuitem"
-          >
-            <span class="nav-user-menu-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <path
-                  d="M9 5h-2a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h2"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.6"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M13 16l4-4-4-4"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.6"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M17 12H9"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.6"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-            </span>
-            <span class="nav-user-menu-label">Logout</span>
-          </button>
+          <div class="topbar-brand">
+            <span class="brand-name">mossai</span>
+            <span class="brand-subtitle">osu! server list [prototype]</span>
+          </div>
         </div>
-      </div>
-    </div>
-  </nav>
-</header>
+
+        <nav class="topbar-nav">
+          <a href="/" class="nav-link nav-link-active">Servers</a>
+          <a href="/list" class="nav-link">List a server</a>
+
+          <button
+            id="theme-toggle"
+            class="theme-toggle"
+            type="button"
+            aria-label="Toggle color theme"
+          >
+            <!-- light mode -->
+            <svg
+              class="theme-icon theme-icon-sun"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <circle cx="12" cy="12" r="4" fill="currentColor" />
+              <g
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+              >
+                <line x1="12" y1="2" x2="12" y2="5" />
+                <line x1="12" y1="19" x2="12" y2="22" />
+                <line x1="4.22" y1="4.22" x2="6.34" y2="6.34" />
+                <line x1="17.66" y1="17.66" x2="19.78" y2="19.78" />
+                <line x1="2" y1="12" x2="5" y2="12" />
+                <line x1="19" y1="12" x2="22" y2="12" />
+                <line x1="4.22" y1="19.78" x2="6.34" y2="17.66" />
+                <line x1="17.66" y1="6.34" x2="19.78" y2="4.22" />
+              </g>
+            </svg>
+
+            <!-- dark mode -->
+            <svg
+              class="theme-icon theme-icon-moon"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                d="M21 12.8A9 9 0 0 1 11.2 3 7 7 0 1 0 21 12.8z"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+
+          <!-- auth -->
+          <div class="nav-auth">
+            <button
+              id="discord-login"
+              class="nav-link nav-auth-login"
+              type="button"
+            >
+              Sign in with Discord
+            </button>
+
+            <div id="nav-user" class="nav-user hidden">
+              <button
+                id="nav-user-trigger"
+                class="nav-user-trigger"
+                type="button"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <img
+                  id="nav-user-avatar"
+                  class="nav-user-avatar"
+                  alt="Discord avatar"
+                />
+              </button>
+
+              <div
+                id="nav-user-menu"
+                class="nav-user-menu"
+                role="menu"
+              >
+                <button
+                  id="nav-admin"
+                  class="nav-user-menu-item hidden"
+                  type="button"
+                  role="menuitem"
+                >
+                  <span class="nav-user-menu-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                      <path
+                        d="M12 2.5L5 5v6.5c0 4.2 2.8 7.4 7 8.5 4.2-1.1 7-4.3 7-8.5V5L12 2.5z"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.6"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M9 12.5l2 2.2 4-4.2"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.6"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </span>
+                  <span class="nav-user-menu-label">Admin panel</span>
+                </button>
+
+                <button
+                  id="nav-logout"
+                  class="nav-user-menu-item"
+                  type="button"
+                  role="menuitem"
+                >
+                  <span class="nav-user-menu-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                      <path
+                        d="M9 5h-2a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h2"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.6"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M13 16l4-4-4-4"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.6"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M17 12H9"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.6"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </span>
+                  <span class="nav-user-menu-label">Logout</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </header>
 
       <main class="content">
         <div class="env-banner">
@@ -263,6 +224,6 @@
       </footer>
     </div>
 
-    <script src="/static/main.js" defer></script>
+    <script type="module" src="/static/js/main.js"></script>
   </body>
 </html>

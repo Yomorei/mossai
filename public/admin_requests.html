@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <title>mossai [admin requests]</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="/static/styles.css" />
+    <link rel="stylesheet" href="/static/styles.css">
     <link rel="icon" href="/static/logo.png" />
   </head>
   <body>
@@ -32,117 +32,145 @@
             type="button"
             aria-label="Toggle color theme"
           >
+            <!-- sun -->
             <svg
               class="theme-icon theme-icon-sun"
               viewBox="0 0 24 24"
               aria-hidden="true"
             >
-              <circle cx="12" cy="12" r="4.5" fill="currentColor" />
-              <circle
-                cx="12"
-                cy="12"
-                r="7"
+              <circle cx="12" cy="12" r="4" fill="currentColor" />
+              <g
                 fill="none"
                 stroke="currentColor"
                 stroke-width="1.6"
-              />
-              <line
-                x1="12"
-                y1="2"
-                x2="12"
-                y2="5"
-                stroke="currentColor"
-                stroke-width="1.6"
                 stroke-linecap="round"
-              />
-              <line
-                x1="12"
-                y1="19"
-                x2="12"
-                y2="22"
-                stroke="currentColor"
-                stroke-width="1.6"
-                stroke-linecap="round"
-              />
-              <line
-                x1="4.2"
-                y1="4.2"
-                x2="6.3"
-                y2="6.3"
-                stroke="currentColor"
-                stroke-width="1.6"
-                stroke-linecap="round"
-              />
-              <line
-                x1="17.7"
-                y1="17.7"
-                x2="19.8"
-                y2="19.8"
-                stroke="currentColor"
-                stroke-width="1.6"
-                stroke-linecap="round"
-              />
-              <line
-                x1="2"
-                y1="12"
-                x2="5"
-                y2="12"
-                stroke="currentColor"
-                stroke-width="1.6"
-                stroke-linecap="round"
-              />
-              <line
-                x1="19"
-                y1="12"
-                x2="22"
-                y2="12"
-                stroke="currentColor"
-                stroke-width="1.6"
-                stroke-linecap="round"
-              />
-              <line
-                x1="4.2"
-                y1="19.8"
-                x2="6.3"
-                y2="17.7"
-                stroke="currentColor"
-                stroke-width="1.6"
-                stroke-linecap="round"
-              />
-              <line
-                x1="17.7"
-                y1="6.3"
-                x2="19.8"
-                y2="4.2"
-                stroke="currentColor"
-                stroke-width="1.6"
-                stroke-linecap="round"
-              />
+              >
+                <line x1="12" y1="2" x2="12" y2="5" />
+                <line x1="12" y1="19" x2="12" y2="22" />
+                <line x1="4.22" y1="4.22" x2="6.34" y2="6.34" />
+                <line x1="17.66" y1="17.66" x2="19.78" y2="19.78" />
+                <line x1="2" y1="12" x2="5" y2="12" />
+                <line x1="19" y1="12" x2="22" y2="12" />
+                <line x1="4.22" y1="19.78" x2="6.34" y2="17.66" />
+                <line x1="17.66" y1="6.34" x2="19.78" y2="4.22" />
+              </g>
             </svg>
 
+            <!-- moon -->
             <svg
               class="theme-icon theme-icon-moon"
               viewBox="0 0 24 24"
               aria-hidden="true"
             >
               <path
-                d="M19.5 15.5A7.5 7.5 0 0 1 9 5a6.5 6.5 0 1 0 10.5 10.5z"
-                fill="currentColor"
-              />
-              <path
-                d="M19.5 15.5A7.5 7.5 0 0 1 9 5"
+                d="M21 12.8A9 9 0 0 1 11.2 3 7 7 0 1 0 21 12.8z"
                 fill="none"
-                stroke="#020617"
-                stroke-width="1.4"
+                stroke="currentColor"
+                stroke-width="1.6"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               />
             </svg>
           </button>
 
-          <button class="nav-action" type="button" disabled>
-            Discord login
-          </button>
+          <!-- auth -->
+          <div class="nav-auth">
+            <button
+              id="discord-login"
+              class="nav-link nav-auth-login"
+              type="button"
+            >
+              Sign in with Discord
+            </button>
+
+            <div id="nav-user" class="nav-user hidden">
+              <button
+                id="nav-user-trigger"
+                class="nav-user-trigger"
+                type="button"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <img
+                  id="nav-user-avatar"
+                  class="nav-user-avatar"
+                  alt="Discord avatar"
+                />
+              </button>
+
+              <div
+                id="nav-user-menu"
+                class="nav-user-menu"
+                role="menu"
+              >
+                <button
+                  id="nav-admin"
+                  class="nav-user-menu-item hidden"
+                  type="button"
+                  role="menuitem"
+                >
+                  <span class="nav-user-menu-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                      <path
+                        d="M12 12l7-3.5v7L12 19.5 5 15.5v-7L12 12z"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.6"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M12 5v7"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.6"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </span>
+                  <span class="nav-user-menu-label">Admin panel</span>
+                </button>
+
+                <button
+                  id="nav-logout"
+                  class="nav-user-menu-item"
+                  type="button"
+                  role="menuitem"
+                >
+                  <span class="nav-user-menu-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                      <path
+                        d="M9 5h-2a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h2"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.6"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M13 16l4-4-4-4"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.6"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M17 12H9"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.6"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </span>
+                  <span class="nav-user-menu-label">Logout</span>
+                </button>
+              </div>
+            </div>
+          </div>
         </nav>
       </header>
 
@@ -151,8 +179,7 @@
           <span class="env-dot"></span>
           <span class="env-label">Admin</span>
           <span class="env-text">
-            This view is for reviewing server submissions. No authentication is
-            wired yet in the prototype.
+            This does not fully work yet, must de-bug
           </span>
         </div>
 
@@ -206,6 +233,154 @@
       </footer>
     </div>
 
-    <script src="/static/main.js" defer></script>
+    <!-- Admin edit -->
+    <div id="admin-edit-overlay" class="admin-edit-overlay hidden">
+      <div class="admin-edit-modal">
+        <header class="admin-edit-header">
+          <div>
+            <h2 class="admin-edit-title">Edit server request</h2>
+            <p class="admin-edit-subtitle">
+              Update fields before approving the listing.
+            </p>
+          </div>
+          <button
+            type="button"
+            id="admin-edit-close"
+            class="admin-edit-close"
+            aria-label="Close edit dialog"
+          >
+            x
+          </button>
+        </header>
+
+        <div
+          id="admin-edit-error"
+          class="notice notice-error hidden"
+        >
+          Could not save changes. Please try again.
+        </div>
+
+        <form id="admin-edit-form" class="server-form admin-edit-form">
+          <div class="server-form-row">
+            <label class="server-form-label" for="edit_server_name">
+              Server name <span>*</span>
+            </label>
+            <input
+              class="server-form-input"
+              type="text"
+              id="edit_server_name"
+              name="server_name"
+              required
+              maxlength="80"
+            />
+          </div>
+
+          <div class="server-form-row">
+            <label class="server-form-label" for="edit_url">
+              Website URL
+            </label>
+            <input
+              class="server-form-input"
+              type="url"
+              id="edit_url"
+              name="url"
+              maxlength="200"
+              placeholder="https://example.com"
+            />
+          </div>
+
+          <div class="server-form-row">
+            <label class="server-form-label" for="edit_logo_url">
+              Logo URL
+            </label>
+            <input
+              class="server-form-input"
+              type="url"
+              id="edit_logo_url"
+              name="logo_url"
+              maxlength="300"
+              placeholder="https://example.com/logo.png"
+            />
+          </div>
+
+          <div class="server-form-row">
+            <label class="server-form-label" for="edit_description">
+              Short description
+            </label>
+            <textarea
+              class="server-form-textarea"
+              id="edit_description"
+              name="description"
+              maxlength="250"
+            ></textarea>
+            <div class="server-form-helper">
+              Max 250 characters. Keep it tight.
+            </div>
+          </div>
+
+          <div class="server-form-row">
+            <label class="server-form-label" for="edit_tags">
+              Tags
+            </label>
+            <input
+              class="server-form-input"
+              type="text"
+              id="edit_tags"
+              name="tags"
+              placeholder="relax, autopilot, packs"
+            />
+            <div class="server-form-helper">
+              Comma separated list. Example: <code>relax, autopilot, packs</code>
+            </div>
+          </div>
+
+          <div class="server-form-row">
+            <label class="server-form-label" for="edit_owner_name">
+              Owner name <span>*</span>
+            </label>
+            <input
+              class="server-form-input"
+              type="text"
+              id="edit_owner_name"
+              name="owner_name"
+              maxlength="80"
+              required
+            />
+          </div>
+
+          <div class="server-form-row">
+            <label class="server-form-label" for="edit_owner_discord">
+              Owner Discord <span>*</span>
+            </label>
+            <input
+              class="server-form-input"
+              type="text"
+              id="edit_owner_discord"
+              name="owner_discord"
+              maxlength="80"
+              required
+            />
+          </div>
+
+          <div class="admin-edit-actions">
+            <button
+              type="button"
+              id="admin-edit-cancel"
+              class="btn-secondary"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              class="btn-primary"
+            >
+              Save changes
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script type="module" src="/static/js/main.js"></script>
   </body>
 </html>

@@ -2,6 +2,7 @@ package main
 
 import (
 	"database/sql"
+	"strings"
 
 	_ "github.com/ncruces/go-sqlite3/driver"
 	_ "github.com/ncruces/go-sqlite3/embed"
@@ -74,8 +75,25 @@ func SetupSQL() {
 			tags          TEXT,
 			owner_name    TEXT    NOT NULL,
 			owner_discord TEXT    NOT NULL,
+			logo_url      TEXT,
 			status        TEXT    NOT NULL DEFAULT 'pending',
 			created_at    DATETIME NOT NULL
+		);
+	`); err != nil {
+		panic(err)
+	}
+
+	if _, err := Database.Exec(`ALTER TABLE server_requests ADD COLUMN logo_url TEXT`); err != nil {
+		lower := strings.ToLower(err.Error())
+		if !strings.Contains(lower, "duplicate column name") {
+			panic(err)
+		}
+	}
+
+	if _, err := Database.Exec(`
+		CREATE TABLE IF NOT EXISTS admin_users (
+			discord_id          TEXT    NOT NULL PRIMARY KEY,
+			can_manage_requests INTEGER NOT NULL DEFAULT 0
 		);
 	`); err != nil {
 		panic(err)
